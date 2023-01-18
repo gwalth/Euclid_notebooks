@@ -1,13 +1,13 @@
-# Roman_notebooks
+# Euclid_notebooks
 
 
 ## Instructions for installing with Conda
 
-- Fetch the grizli repo which includes the specialized Roman branch
+- Fetch the grizli repo which includes the specialized Euclid branch
 
 `git clone https://github.com/gwalth/grizli.git`
 
-- Checkout the Roman branch
+- Checkout the Euclid branch
 
 `cd grizli`
 
@@ -23,17 +23,23 @@
 
 - Compile and install the grizli module.
 
-`cd grizli`
-`pip install --editable . -r requirements.txt`
-`git clone --recurse-submodules https://github.com/gbrammer/eazy-py.git`
-`cd eazy-py`
-`pip install . -r requirements.txt`
+```
+cd grizli
+pip install --editable . -r requirements.txt
+```
+
+- Install eazy-py
+```
+git clone --recurse-submodules https://github.com/gbrammer/eazy-py.git
+cd eazy-py
+pip install . -r requirements.txt
+```
 
 
 ## Setup the directory structure for the Jupyter notebook
 
-Set BASE environmental variable to where you will put your Roman directory. 
-`export BASE="/Users/gwalth/Roman"`
+Set BASE environmental variable to where you will put your Euclid directory. 
+`export BASE="/Users/gwalth/Euclid"`
 
 
 ```
@@ -53,43 +59,38 @@ mkdir ${GRIZLI}/jref
 
 Make the directories where your simulated files will live.  Prep and Extractions are hard coded in the notebook.
 ```
-mkdir ${BASE}/my_roman_sims
-mkdir ${BASE}/my_roman_sims/Prep
-mkdir ${BASE}/my_roman_sims/Extractions
+mkdir ${BASE}/my_euclid_sims
+mkdir ${BASE}/my_euclid_sims/Prep
+mkdir ${BASE}/my_euclid_sims/Extractions
 ```
 
 ## Download Files
-### Direct image
-https://drive.google.com/file/d/1hH9NYz5FQ51rLKbifFB8IGeTEqdq0rP7/view?usp=sharing
-### Slitless spectra
-https://drive.google.com/file/d/1vlNAcJaOd8S27QkNjW6kWWyd_7_DmIkm/view?usp=sharing
-### Primer catalog
-https://drive.google.com/file/d/10RkOCTSFrgGsxY0wrsimuiv53qMC8rTa/view?usp=sharing
-### CONF files
-https://drive.google.com/file/d/1R2UWGL1M9Q3HrdZXVsH1Rwx-k4PkaNXi/view?usp=sharing
-### SE files
-https://drive.google.com/file/d/1BHPsQtHg_r2glOF6_LitsVrOCidDaC4E/view?usp=sharing
+### Source Extractor files
+https://drive.google.com/file/d/1jQAypoi_YpD0BWY9SnlaP1G51dhX6Aay/view?usp=share_link
 
 
 ## Copy the necessary files
 
- Copy configurations files for the Roman grism
+ Copy configurations files for the Euclid grisms
 ```
-cd ${BASE}
-tar -xvf ~/Downloads/Roman_grizli_conf_glw_v1.tar
-```
-Copy the SExtractor parameter files for Roman
-```
-cd ${BASE}/my_roman_sims
-tar -xvf ~/Downloads/Roman_prep_glw_v1.tar
+cd ${BASE}/grizli/CONF
+mkdir Euclid
+cd Euclid
+cp /local/SIRsim/SIM_10_18_22_singleframe/frame_1/CONF* .
 ```
 
-Copy direct image, slitless spectra and primer catalog to your working directory
+Copy the SExtractor parameter files for Euclid
 ```
 cd ${BASE}/my_roman_sims/Prep
-cp ~/Downloads/Roman_ATLAS_1deg_*_direct.fits .
-cp ~/Downloads/Roman_ATLAS_1deg_*_slitless.fits .
-cp ~/Downloads/ATLAS_1deg_primer_*.cat .
+tar -xvf ~/Downloads/Euclid_prep_glw_v1.tar
+```
+
+Copy direct images, slitless spectra and primer catalog to your working directory
+```
+cd ${BASE}/my_roman_sims/Prep
+cp -r /local/SIRsim/SIM_10_18_22_singleframe/SIM_intermediate_files/midfiles_frame_1/Input_Thumbnails .
+cp /local/SIRsim/SIM_10_18_22_singleframe/data/EUC_SIM_NISRGS000-0-1_20220913T230154.141Z_TEST_SC8_NIS_S1.fits .
+cp ~/Downloads/CATALOG_WP9_INTERMEDIATE_RUN_v2_NewCoord_mod.fits .
 ```
 
 ## Running the notebook
@@ -97,7 +98,7 @@ cp ~/Downloads/ATLAS_1deg_primer_*.cat .
 
 
 ```
-git clone https://github.com/gwalth/Roman_notebooks.git
+git clone https://github.com/gwalth/Euclid_notebooks.git
 ```
 
 
